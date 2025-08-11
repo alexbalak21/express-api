@@ -1,16 +1,11 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const notesRouter = require('./routes/notes');
 
-// Middleware to parse JSON
 app.use(express.json());
+app.use('/notes', notesRouter);
 
-// Sample route
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the Express API!' });
-});
-
-// Start server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
